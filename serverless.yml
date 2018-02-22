@@ -11,14 +11,30 @@ service: serverless-hello-world
 provider:
   name: aws
   runtime: nodejs6.10
+  region: ap-northeast-2
+  stage: dev
 
-# The `functions` block defines what code to deploy
 functions:
-  helloWorld:
-    handler: handler.helloWorld
-    # The `events` block defines how to trigger the handler.helloWorld code
+  hello:
+    handler: handler.hello
     events:
       - http:
-          path: hello-world
+          path: hello
           method: get
           cors: true
+
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: hello
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
