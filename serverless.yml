@@ -38,3 +38,13 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+
+plugins:
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: hello-api.nalbam.com
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
