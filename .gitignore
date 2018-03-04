@@ -36,8 +36,8 @@ build/
 *.log
 
 # package directories
-node_modules
-jspm_packages
+node_modules/
+jspm_packages/
 
 # Serverless directories
 .serverless/
