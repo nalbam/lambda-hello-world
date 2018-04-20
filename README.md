@@ -6,6 +6,12 @@
 npm install -g serverless
 ```
 
+## domain
+```
+sls create_domain -v
+sls create_domain --stage prod -v
+```
+
 ## deploy
 ```
 sls deploy -v
