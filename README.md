@@ -1,4 +1,4 @@
-# hello-world
+# lambda-hello-world
 * https://serverless.com/
 
 ## install

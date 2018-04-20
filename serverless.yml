@@ -1,18 +1,13 @@
-# Welcome to serverless. Read the docs
-# https://serverless.com/framework/docs/
+service: hello-world
 
-# Serverless.yml is the configuration the CLI
-# uses to deploy your code to your provider of choice
+frameworkVersion: ">=1.1.0 <2.0.0"
 
-# The `service` block is the name of the service
-service: serverless-hello-world
-
-# The `provider` block defines where your service will be deployed
 provider:
   name: aws
   runtime: nodejs8.10
-  region: ap-northeast-2
   stage: ${opt:stage, 'dev'}
+  environment:
+    DOMAIN_NAME: ${self:service}-${self:provider.stage}.nalbam.com
 
 functions:
   hello:
@@ -23,28 +18,12 @@ functions:
           method: get
           cors: true
 
-resources:
-  Resources:
-    usersTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: hello-${self:provider.stage}
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-
 plugins:
   - serverless-domain-manager
 
 custom:
   customDomain:
-    domainName: hello-${self:provider.stage}.nalbam.com
+    domainName: ${self:provider.environment.DOMAIN_NAME}
     basePath: ''
     stage: ${self:provider.stage}
     createRoute53Record: true
