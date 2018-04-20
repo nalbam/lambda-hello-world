@@ -4,8 +4,9 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  region: ${opt:region, 'ap-northeast-2'}
   stage: ${opt:stage, 'dev'}
+  runtime: nodejs8.10
   environment:
     DOMAIN_NAME: ${self:service}-${self:provider.stage}.nalbam.com
 
