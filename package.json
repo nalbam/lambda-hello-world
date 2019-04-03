@@ -4,7 +4,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "serverless-domain-manager": "^2.3.3"
+    "serverless-domain-manager": "^3.2.1"
   },
   "dependencies": {}
 }
